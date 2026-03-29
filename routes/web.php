@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EmployeeController;
@@ -58,4 +58,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/conferences/{id}', [ConferenceController::class, 'update'])->name('conferences.update');
 
     Route::delete('/conferences/{id}', [ConferenceController::class, 'destroy'])->name('conferences.destroy');
+   
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 });
