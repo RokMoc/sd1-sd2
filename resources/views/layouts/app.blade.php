@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SD1</title>
+    <title>{{ __('messages.system_title') }}</title>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/client/conferences">Client</a>
+    <a href="/employee/conferences">Employee</a>
+    <a href="/admin">Admin</a>
+
+    <span>
+        {{ __('messages.current_user') }}: John Doe
+    </span>
+
+    <button disabled>{{ __('messages.logout') }}</button>
+</nav>
 </head>
 <body>
 

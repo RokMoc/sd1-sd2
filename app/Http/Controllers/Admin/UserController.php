@@ -17,8 +17,16 @@ class UserController extends Controller
         return view('admin.users.edit');
     }
 
-    public function update(Request $request, $id)
-    {
-        return redirect()->route('admin.users.index');
-    }
+   public function update(Request $request, $id)
+{
+    $request->validate([
+        'first_name' => ['required', 'string'],
+        'last_name' => ['required', 'string'],
+        'email' => ['required', 'email'],
+    ]);
+
+    return redirect()
+        ->route('admin.users.index')
+        ->with('success', 'User updated successfully.');
+}
 }
