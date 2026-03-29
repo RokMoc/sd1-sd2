@@ -46,7 +46,7 @@ class EmployeeController extends Controller
     {
         $conference = collect($this->getConferences())->firstWhere('id', (int) $id);
 
-        abort_if(!$conference, 404);
+        abort_if(! $conference, 404);
 
         return view('employee.show', compact('conference'));
     }

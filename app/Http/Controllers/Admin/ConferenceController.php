@@ -50,7 +50,7 @@ class ConferenceController extends Controller
     {
         $conference = collect($this->getConferences())->firstWhere('id', (int) $id);
 
-        abort_if(!$conference, 404);
+        abort_if(! $conference, 404);
 
         return view('admin.conferences.show', compact('conference'));
     }
@@ -59,7 +59,7 @@ class ConferenceController extends Controller
     {
         $conference = collect($this->getConferences())->firstWhere('id', (int) $id);
 
-        abort_if(!$conference, 404);
+        abort_if(! $conference, 404);
 
         return view('admin.conferences.edit', compact('conference'));
     }
@@ -75,19 +75,19 @@ class ConferenceController extends Controller
     }
 
     public function destroy($id)
-{
-    $conference = collect($this->getConferences())->firstWhere('id', (int) $id);
+    {
+        $conference = collect($this->getConferences())->firstWhere('id', (int) $id);
 
-    abort_if(!$conference, 404);
+        abort_if(! $conference, 404);
 
-    if ($conference['is_past']) {
+        if ($conference['is_past']) {
+            return redirect()
+                ->route('admin.conferences.index')
+                ->with('error', 'Past conferences cannot be deleted.');
+        }
+
         return redirect()
             ->route('admin.conferences.index')
-            ->with('error', 'Past conferences cannot be deleted.');
+            ->with('success', 'Conference deleted successfully.');
     }
-
-    return redirect()
-        ->route('admin.conferences.index')
-        ->with('success', 'Conference deleted successfully.');
-}
 }
